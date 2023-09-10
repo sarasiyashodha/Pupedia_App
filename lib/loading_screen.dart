@@ -11,16 +11,6 @@ class LoadingScreen extends StatefulWidget {
 class _LoadingScreenState extends State<LoadingScreen> {
   @override
   Widget build(BuildContext context) {
-    return const Placeholder();
-  }
-}
-
-
-class LogoScreen extends StatelessWidget {
-  const LogoScreen({super.key});
-
-  @override
-  Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.white,
       body: Center(
@@ -34,7 +24,7 @@ class LogoScreen extends StatelessWidget {
               style: TextStyle(
                 fontFamily: 'Bubblegum Sans',
                 fontSize: 60.0,
-            ),
+              ),
             ),
             SpinKitCircle(
               color: Colors.grey,
@@ -46,3 +36,6 @@ class LogoScreen extends StatelessWidget {
     );
   }
 }
+
+
+
