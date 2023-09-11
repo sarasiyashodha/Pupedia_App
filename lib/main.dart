@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
 import 'loading_screen.dart';
-import 'homepage.dart';
-import 'result_page.dart';
 
 void main() {
   runApp(const MyApp());
@@ -19,9 +17,9 @@ class MyApp extends StatelessWidget {
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
         useMaterial3: true,
       ),
-      // home: LoadingScreen(),
+      home: LoadingScreen(),
       // home: HomePage(),
-      home: ResultPage(),
+      // home: ResultPage(),
     );
   }
 }
