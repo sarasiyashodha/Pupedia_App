@@ -39,7 +39,21 @@ class ResultPage extends StatelessWidget {
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      Text("German Shepard"),
+                      Text("German Shepard",
+                        style: TextStyle(
+                          fontFamily: 'PT Serif Caption',
+                          fontSize: 30.0,
+
+                      ),
+                      ),
+                      SizedBox(
+                        height: 20.0,
+                      ),
+                      Text('10 years',
+                        style: TextStyle(
+                          fontSize: 20.0,
+                        ),
+                      ),
                     ],
 
                   ),
