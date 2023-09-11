@@ -16,7 +16,7 @@ class ResultPage extends StatelessWidget {
                 right: 0,
                 child: Container(
                   width: double.maxFinite,
-                  height: 300,
+                  height: 350,
                   decoration: BoxDecoration(
                     image: DecorationImage(image: AssetImage("Images/german_shepherd.jpg"),
                       fit: BoxFit.cover,
@@ -24,6 +24,7 @@ class ResultPage extends StatelessWidget {
                   ),
                 ),
             ),
+            // Positioned(child: child)
           ],
         ),
       ),
