@@ -1,8 +1,14 @@
 import 'package:flutter/material.dart';
+import 'result_page.dart';
 
-class HomePage extends StatelessWidget {
+class HomePage extends StatefulWidget {
   const HomePage({super.key});
 
+  @override
+  State<HomePage> createState() => _HomePageState();
+}
+
+class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -19,6 +25,16 @@ class HomePage extends StatelessWidget {
           margin: EdgeInsets.only(top: 30.0),
           padding: EdgeInsets.all(20.0),
           child: TextField(
+            onSubmitted: (value) {
+              Navigator.push(
+                context,
+                MaterialPageRoute(
+                  builder: (BuildContext context) {
+                    return ResultPage();
+                  },
+                ),
+              );
+            },
             style: TextStyle(
               color: Colors.black,
             ),
@@ -46,3 +62,5 @@ class HomePage extends StatelessWidget {
     );
   }
 }
+
+
