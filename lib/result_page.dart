@@ -12,8 +12,6 @@ class ResultPage extends StatelessWidget {
         child: Stack(
           children: [
             Positioned(
-              left: 0,
-                right: 0,
                 child: Container(
                   width: double.maxFinite,
                   height: 350,
@@ -24,7 +22,31 @@ class ResultPage extends StatelessWidget {
                   ),
                 ),
             ),
-            // Positioned(child: child)
+            Positioned(
+              top: 320,
+              child: Container(
+                width: MediaQuery.of(context).size.width,
+                height: 500,
+                decoration: BoxDecoration(
+                  color: Colors.white,
+                  borderRadius: BorderRadius.only(
+                    topLeft: Radius.circular(30),
+                    topRight: Radius.circular(30),
+                  ),
+                ),
+                child: Padding(
+                  padding: const EdgeInsets.all(20.0),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text("German Shepard"),
+                    ],
+
+                  ),
+                ),
+
+            ),
+            ),
           ],
         ),
       ),
