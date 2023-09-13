@@ -2,7 +2,7 @@ import 'dart:convert';
 import 'package:http/http.dart';
 
 class ApiService {
-  final endpoint = "https://dog.ceo/api/breed/bulldog/images";
+  final endpoint = "https://dog.ceo/api/breeds/list/all";
 
   Future<Map<String, dynamic>> getData() async {
     Response response = await get(Uri.parse(endpoint));

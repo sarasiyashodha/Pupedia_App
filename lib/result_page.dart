@@ -54,7 +54,9 @@ class _ResultPageState extends State<ResultPage> {
                           child: Column(
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
-                              Text("German Shepard",
+                              Text(
+                                "hello",
+
                                 style: TextStyle(
                                   fontFamily: 'PT Serif Caption',
                                   fontSize: 30.0,
