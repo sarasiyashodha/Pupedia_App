@@ -35,22 +35,38 @@ class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: Text('Dog Breed Search'),
-      ),
       body: Column(
         children: <Widget>[
           Padding(
-            padding: const EdgeInsets.all(16.0),
+            padding: const EdgeInsets.all(20.0),
             child: TextField(
               onChanged: (value) {
                 setState(() {
                   searchQuery = value;
                 });
               },
+              onSubmitted: (value) {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: (BuildContext context) {
+                      return ResultPage();
+                    },
+                  ),
+                );
+              },
               decoration: InputDecoration(
-                labelText: 'Search Dog Breeds',
                 prefixIcon: Icon(Icons.search),
+                hintText: 'Enter a dog breed',
+                hintStyle: TextStyle(
+                  color: Colors.grey,
+                ),
+                filled: true,
+                fillColor: Colors.white38,
+                border: OutlineInputBorder(
+                  borderRadius: BorderRadius.all(Radius.circular(10.0)),
+                  borderSide: BorderSide.none,
+                ),
               ),
             ),
           ),
