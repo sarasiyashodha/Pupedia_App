@@ -20,7 +20,6 @@ class _ResultPageState extends State<ResultPage> {
           future: service.getData(),
           builder: (context, snapshot) {
             if(snapshot.hasData) {
-              Map<String, dynamic>? data = snapshot.data;
               return Container(
                 width: double.maxFinite,
                 height: double.maxFinite,

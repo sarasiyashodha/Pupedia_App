@@ -4,13 +4,14 @@ import 'package:http/http.dart';
 class ApiService {
   final endpoint = "https://dog.ceo/api/breeds/list/all";
 
-  Future<Map<String, dynamic>> getData() async {
+  Future<List<String>> getData() async {
     Response response = await get(Uri.parse(endpoint));
 
     if(response.statusCode == 200) {
-      Map<String, dynamic> body  = jsonDecode(response.body);
-      Map<String, dynamic> message  = body['message'];
-      return message;
+      final Map<String, dynamic> data = json.decode(response.body);
+      final Map<String, dynamic> breeds = data['message'];
+
+      return breeds.keys.toList();
 
     }else{
       throw Exception(response.statusCode);
