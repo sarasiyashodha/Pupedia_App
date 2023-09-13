@@ -10,9 +10,10 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
-
   final ApiService service1 = ApiService();
+
   List<String> dogBreeds = [];
+  List<String> filteredBreeds = [];
   String searchQuery = '';
 
   @override
@@ -23,7 +24,7 @@ class _HomePageState extends State<HomePage> {
 
   Future<void> fetchData() async {
     try {
-      final breeds = await service1.getData();
+      final breeds = await service1.fetchDogBreeds();
       setState(() {
         dogBreeds = breeds;
       });
@@ -32,117 +33,83 @@ class _HomePageState extends State<HomePage> {
     }
   }
 
+  void filterBreeds() {
+    setState(() {
+      filteredBreeds = dogBreeds
+          .where((breed) =>
+              breed.toLowerCase().contains(searchQuery.toLowerCase()))
+          .toList();
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Column(
-        children: <Widget>[
-          Padding(
-            padding: const EdgeInsets.all(20.0),
-            child: TextField(
-              onChanged: (value) {
-                setState(() {
-                  searchQuery = value;
-                });
-              },
-              onSubmitted: (value) {
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                    builder: (BuildContext context) {
-                      return ResultPage();
-                    },
+      body: Container(
+        width: double.maxFinite,
+        height: double.maxFinite,
+        decoration: BoxDecoration(
+          image: DecorationImage(
+            fit: BoxFit.cover,
+            image: AssetImage('Images/dog_image.webp',),
+          ),
+        ),
+        child: Column(
+          children: <Widget>[
+            SizedBox(
+              height:30.0,
+            ),
+            Padding(
+              padding: const EdgeInsets.all(16.0),
+              child: TextField(
+                onChanged: (value) {
+                  setState(() {
+                    searchQuery = value;
+                    filterBreeds();
+                  });
+                },
+                decoration: InputDecoration(
+                  prefixIcon: Icon(Icons.search),
+                  hintText: 'Enter a dog breed',
+                  hintStyle: TextStyle(
+                    color: Colors.grey,
                   ),
-                );
-              },
-              decoration: InputDecoration(
-                prefixIcon: Icon(Icons.search),
-                hintText: 'Enter a dog breed',
-                hintStyle: TextStyle(
-                  color: Colors.grey,
-                ),
-                filled: true,
-                fillColor: Colors.white38,
-                border: OutlineInputBorder(
-                  borderRadius: BorderRadius.all(Radius.circular(10.0)),
-                  borderSide: BorderSide.none,
+                  filled: true,
+                  fillColor: Colors.white38,
+                  border: OutlineInputBorder(
+                    borderRadius: BorderRadius.all(Radius.circular(10.0)),
+                    borderSide: BorderSide.none,
+                  ),
                 ),
               ),
             ),
-          ),
-          Expanded(
-            child: ListView.builder(
-              itemCount: dogBreeds.length,
-              itemBuilder: (context, index) {
-                final breedName = dogBreeds[index];
-                // Check if the breed name contains the search query
-                if (breedName.toLowerCase().contains(searchQuery.toLowerCase())) {
+            Expanded(
+              child: ListView.builder(
+                itemCount: filteredBreeds.length,
+                itemBuilder: (context, index) {
+                  final breedName = filteredBreeds[index];
                   return ListTile(
                     title: Text(breedName),
+                    onTap: () {
+                      print('Selected breed: $breedName');
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (BuildContext context) {
+                            return ResultPage();
+                          },
+                        ),
+                      );
+                    },
                   );
-                }
-                return SizedBox.shrink(); // Hide the breed if not matching the search query
-              },
+                },
+              ),
             ),
-          ),
-        ],
+          ],
+        ),
       ),
     );
   }
 }
-
-// @override
-// Widget build(BuildContext context) {
-//   return Scaffold(
-//     body: Container(
-//       width: double.maxFinite,
-//       height: double.maxFinite,
-//       decoration: BoxDecoration(
-//         image: DecorationImage(
-//           fit: BoxFit.cover,
-//           image: AssetImage('Images/dog_image.webp',),
-//         ),
-//       ),
-//       child: Container(
-//         margin: EdgeInsets.only(top: 30.0),
-//         padding: EdgeInsets.all(20.0),
-//         child: TextField(
-//           onSubmitted: (value) {
-//             Navigator.push(
-//               context,
-//               MaterialPageRoute(
-//                 builder: (BuildContext context) {
-//                   return ResultPage();
-//                 },
-//               ),
-//             );
-//           },
-//           style: TextStyle(
-//             color: Colors.black,
-//           ),
-//           decoration: InputDecoration(
-//             icon: Icon(
-//               Icons.search,
-//               color: Colors.black38,
-//             ),
-//             hintText: 'Enter a dog breed',
-//             hintStyle: TextStyle(
-//               color: Colors.grey,
-//             ),
-//             filled: true,
-//             fillColor: Colors.white38,
-//             border: OutlineInputBorder(
-//               borderRadius: BorderRadius.all(Radius.circular(10.0)),
-//               borderSide: BorderSide.none,
-//             ),
-//
-//           ),
-//
-//         ),
-//       ),
-//     ),
-//   );
-// }
-// }
 
 
