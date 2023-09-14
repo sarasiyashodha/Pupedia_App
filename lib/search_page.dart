@@ -89,9 +89,9 @@ class _SearchPageState extends State<SearchPage> {
                 itemBuilder: (context, index) {
                   final breedName = filteredBreeds[index];
                   return ListTile(
+
                     title: Text(breedName),
                     onTap: () {
-                      print('Selected breed: $breedName');
                       Navigator.push(
                         context,
                         MaterialPageRoute(

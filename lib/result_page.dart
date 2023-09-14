@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:pupedia_app/api_service.dart';
+import 'package:flutter_spinkit/flutter_spinkit.dart';
 
 class ResultPage extends StatefulWidget {
   final String selectedBreed;
@@ -35,9 +36,6 @@ class _ResultPageState extends State<ResultPage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(
-        title: Text('Result Page'),
-      ),
       body: Container(
         width: double.maxFinite,
         height: double.maxFinite,
@@ -46,7 +44,7 @@ class _ResultPageState extends State<ResultPage> {
             Positioned(
               child: Container(
                 width: double.maxFinite,
-                height: 350,
+                height: 420,
                 decoration: BoxDecoration(
                   image: imageUrl.isNotEmpty
                       ? DecorationImage(
@@ -55,11 +53,38 @@ class _ResultPageState extends State<ResultPage> {
                         )
                       : null, //
                 ),
-                child: imageUrl.isEmpty // Display a loading spinner if imageUrl is empty
+                child: imageUrl
+                        .isEmpty // Display a loading spinner if imageUrl is empty
                     ? Center(
-                  child: CircularProgressIndicator(), // Loading spinner widget
-                )
+                        child: SpinKitCircle(
+                          color: Colors.grey,
+                          size: 60.0,
+                        ), // Loading spinner widget
+                      )
                     : null,
+              ),
+            ),
+            Positioned(
+              top: 400,
+              child: Container(
+                width: MediaQuery.of(context).size.width,
+                height: 200,
+                decoration: BoxDecoration(
+                  color: Colors.white,
+                  borderRadius: BorderRadius.only(
+                    topLeft: Radius.circular(30),
+                    topRight: Radius.circular(30),
+                  ),
+                ),
+                child: Center(
+                  child: Text(
+                    '${widget.selectedBreed}',
+                    style: TextStyle(
+                      fontFamily: 'PT Serif Caption',
+                      fontSize: 40.0,
+                    ),
+                  ),
+                ),
               ),
             ),
           ],
@@ -68,96 +93,3 @@ class _ResultPageState extends State<ResultPage> {
     );
   }
 }
-
-// child: Column(
-//   mainAxisAlignment: MainAxisAlignment.center,
-//   children: [
-//     Text('Selected Breed: ${widget.selectedBreed}'),
-//     if (imageUrl.isNotEmpty)
-//       Image.network(imageUrl) // Display the image if available
-//     else
-//       Text('Image not available'), // Display a message if no image is available
-//   ],
-// ),
-// ),
-// );
-
-// @override
-// Widget build(BuildContext context) {
-//   return Scaffold(
-// body: FutureBuilder(
-// future: service.getData(),
-// builder: (context, snapshot) {
-//   if(snapshot.hasData) {
-//     body: Container(
-//       width: double.maxFinite,
-//       height: double.maxFinite,
-//       child: Stack(
-//         children: [
-//           Positioned(
-//             child: Container(
-//               width: double.maxFinite,
-//               height: 350,
-//               decoration: BoxDecoration(
-//                 image: DecorationImage(image: AssetImage("Images/german_shepherd.jpg"),
-//                   fit: BoxFit.cover,
-//                 ),
-//               ),
-//             ),
-//           ),
-//           Positioned(
-//             top: 320,
-//             child: Container(
-//               width: MediaQuery.of(context).size.width,
-//               height: 500,
-//               decoration: BoxDecoration(
-//                 color: Colors.white,
-//                 borderRadius: BorderRadius.only(
-//                   topLeft: Radius.circular(30),
-//                   topRight: Radius.circular(30),
-//                 ),
-//               ),
-//               child: Padding(
-//                 padding: const EdgeInsets.all(20.0),
-//                 child: Column(
-//                   crossAxisAlignment: CrossAxisAlignment.start,
-//                   children: [
-//                     Text(
-//                       "hello",
-//
-//                       style: TextStyle(
-//                         fontFamily: 'PT Serif Caption',
-//                         fontSize: 30.0,
-//
-//                       ),
-//                     ),
-//                     SizedBox(
-//                       height: 20.0,
-//                     ),
-//                     Text('10 years',
-//                       style: TextStyle(
-//                         fontSize: 20.0,
-//                       ),
-//                     ),
-//                   ],
-//
-//                 ),
-//               ),
-//
-//             ),
-//           ),
-//         ],
-//       ),
-// );
-// }
-// else{
-//   return Center(
-//     child: CircularProgressIndicator(),
-//   );
-//
-// }
-//
-//   },
-// ),
-//   );
-// }
