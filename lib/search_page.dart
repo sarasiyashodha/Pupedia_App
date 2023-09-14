@@ -29,7 +29,7 @@ class _SearchPageState extends State<SearchPage> {
         dogBreeds = breeds;
       });
     } catch (e) {
-      // Handle error here
+      Text('Error fetching the dog breed.');
     }
   }
 
@@ -96,7 +96,9 @@ class _SearchPageState extends State<SearchPage> {
                         context,
                         MaterialPageRoute(
                           builder: (BuildContext context) {
-                            return Container();
+                            return ResultPage(
+                              selectedBreed: breedName,
+                            );
                           },
                         ),
                       );

@@ -29,10 +29,12 @@ class _LoadingScreenState extends State<LoadingScreen> {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            Image(image: AssetImage('Images/dog_logo.png'),
+            Image(
+              image: AssetImage('Images/dog_logo.png'),
               width: 250.0,
             ),
-            Text("Pupedia",
+            Text(
+              "Pupedia",
               style: TextStyle(
                 fontFamily: 'Bubblegum Sans',
                 fontSize: 60.0,
@@ -48,6 +50,3 @@ class _LoadingScreenState extends State<LoadingScreen> {
     );
   }
 }
-
-
-
