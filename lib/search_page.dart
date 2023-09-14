@@ -51,13 +51,15 @@ class _SearchPageState extends State<SearchPage> {
         decoration: BoxDecoration(
           image: DecorationImage(
             fit: BoxFit.cover,
-            image: AssetImage('Images/dog_image.webp',),
+            image: AssetImage(
+              'Images/dog_image.webp',
+            ),
           ),
         ),
         child: Column(
           children: <Widget>[
             SizedBox(
-              height:30.0,
+              height: 30.0,
             ),
             Padding(
               padding: const EdgeInsets.all(16.0),
@@ -88,21 +90,28 @@ class _SearchPageState extends State<SearchPage> {
                 itemCount: filteredBreeds.length,
                 itemBuilder: (context, index) {
                   final breedName = filteredBreeds[index];
-                  return ListTile(
-
-                    title: Text(breedName),
-                    onTap: () {
-                      Navigator.push(
-                        context,
-                        MaterialPageRoute(
-                          builder: (BuildContext context) {
-                            return ResultPage(
-                              selectedBreed: breedName,
-                            );
-                          },
-                        ),
-                      );
-                    },
+                  return Container(
+                    decoration: BoxDecoration(
+                      color: Colors.white38,
+                      border:
+                          Border.all(width: 1, color: Colors.deepPurpleAccent),
+                      borderRadius: BorderRadius.all(Radius.circular(10)),
+                    ),
+                    child: ListTile(
+                      title: Text(breedName),
+                      onTap: () {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (BuildContext context) {
+                              return ResultPage(
+                                selectedBreed: breedName,
+                              );
+                            },
+                          ),
+                        );
+                      },
+                    ),
                   );
                 },
               ),
@@ -113,5 +122,3 @@ class _SearchPageState extends State<SearchPage> {
     );
   }
 }
-
-
