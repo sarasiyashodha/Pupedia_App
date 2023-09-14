@@ -2,11 +2,11 @@ import 'dart:convert';
 import 'package:http/http.dart';
 
 class ApiService {
-  final endpoint = "https://dog.ceo/api/breeds/list/all";
-  final baseUrl = "https://dog.ceo/api/breed";
+  final baseUrl = "https://dog.ceo/api";
 
   Future<List<String>> fetchDogBreeds() async {
-    Response response = await get(Uri.parse(endpoint));
+    Response response = await get(Uri.parse("$baseUrl/breeds/list/all"),
+    );
 
     if(response.statusCode == 200) {
       final Map<String, dynamic> data = json.decode(response.body);
@@ -21,7 +21,7 @@ class ApiService {
 
   Future<String> fetchDogImageByBreed(String breedName) async {
     final response = await get(
-      Uri.parse("$baseUrl/$breedName/images/random"),
+      Uri.parse("$baseUrl/breed/$breedName/images/random"),
     );
 
     if (response.statusCode == 200) {

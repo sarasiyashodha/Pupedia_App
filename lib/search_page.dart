@@ -2,14 +2,14 @@ import 'package:flutter/material.dart';
 import 'package:pupedia_app/api_service.dart';
 import 'result_page.dart';
 
-class HomePage extends StatefulWidget {
-  const HomePage({super.key});
+class SearchPage extends StatefulWidget {
+  const SearchPage({super.key});
 
   @override
-  State<HomePage> createState() => _HomePageState();
+  State<SearchPage> createState() => _SearchPageState();
 }
 
-class _HomePageState extends State<HomePage> {
+class _SearchPageState extends State<SearchPage> {
   final ApiService service1 = ApiService();
 
   List<String> dogBreeds = [];
@@ -96,7 +96,7 @@ class _HomePageState extends State<HomePage> {
                         context,
                         MaterialPageRoute(
                           builder: (BuildContext context) {
-                            return ResultPage();
+                            return Container();
                           },
                         ),
                       );

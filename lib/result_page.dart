@@ -3,7 +3,9 @@ import 'package:pupedia_app/api_service.dart';
 
 
 class ResultPage extends StatefulWidget {
-  const ResultPage({super.key});
+
+  final String selectedBreed;
+  ResultPage(this.selectedBreed);
 
   @override
   State<ResultPage> createState() => _ResultPageState();
@@ -11,11 +13,51 @@ class ResultPage extends StatefulWidget {
 
 class _ResultPageState extends State<ResultPage> {
 
-  ApiService service = ApiService();
+  String imageUrl = '';
+
+  @override
+  void initState() {
+    super.initState();
+    fetchDogImage();
+  }
+
+  Future<void> fetchDogImage() async {
+    final breedName = widget.selectedBreed;
+    final apiService = ApiService();
+    // final image = await apiService.fetchDogImage(breedName);
+    // setState(() {
+    //   imageUrl = image;
+    // });
+  }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: AppBar(
+        title: Text('Result Page'),
+      ),
+      body: Center(
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            Text('Selected Breed: ${widget.selectedBreed}'),
+            if (imageUrl != null)
+              Image.network(imageUrl) // Display the image if available
+            else
+              Text('Image not available'), // Display a message if no image is available
+          ],
+        ),
+      ),
+    );
+  }
+
+
+
+
+
+  // @override
+  // Widget build(BuildContext context) {
+  //   return Scaffold(
         // body: FutureBuilder(
           // future: service.getData(),
           // builder: (context, snapshot) {
@@ -90,8 +132,8 @@ class _ResultPageState extends State<ResultPage> {
         //
         //   },
         // ),
-    );
-  }
+  //   );
+  // }
 }
 
 

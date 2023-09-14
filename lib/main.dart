@@ -18,8 +18,6 @@ class MyApp extends StatelessWidget {
         useMaterial3: true,
       ),
       home: LoadingScreen(),
-      // home: HomePage(),
-      // home: ResultPage(),
     );
   }
 }
