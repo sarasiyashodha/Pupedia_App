@@ -22,6 +22,7 @@ class _ResultPageState extends State<ResultPage> {
     fetchDogImage();
   }
 
+  //This method fetches the dog image for the selected breed by calling the "fetchDogImageByBreed" method from the "ApiService".
   Future<void> fetchDogImage() async {
     try {
       final image = await service2.fetchDogImageByBreed(widget.selectedBreed);
@@ -54,12 +55,12 @@ class _ResultPageState extends State<ResultPage> {
                       : null, //
                 ),
                 child: imageUrl
-                        .isEmpty // Display a loading spinner if imageUrl is empty
+                        .isEmpty
                     ? Center(
                         child: SpinKitCircle(
                           color: Colors.grey,
                           size: 60.0,
-                        ), // Loading spinner widget
+                        ),
                       )
                     : null,
               ),

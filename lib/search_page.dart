@@ -12,8 +12,8 @@ class SearchPage extends StatefulWidget {
 class _SearchPageState extends State<SearchPage> {
   final ApiService service1 = ApiService();
 
-  List<String> dogBreeds = [];
-  List<String> filteredBreeds = [];
+  List<String> dogBreeds = []; //store all the dog breeds that fetch from API.
+  List<String> filteredBreeds = [];  //store the dog breeds that are related to the user typed letter in search query.
   String searchQuery = '';
 
   @override
@@ -22,23 +22,27 @@ class _SearchPageState extends State<SearchPage> {
     fetchData();
   }
 
+  //fetches the list of dog breeds by calling the "fetchDogBreeds" method from the "ApiService".
   Future<void> fetchData() async {
     try {
       final breeds = await service1.fetchDogBreeds();
       setState(() {
-        dogBreeds = breeds;
+        dogBreeds = breeds; //If successful, it updates the "dogBreeds" list in the state.
       });
     } catch (e) {
       Text('Error fetching the dog breed.');
     }
   }
 
+  /*dynamically update the list of displayed dog breeds in response to the user's search input.
+  It allows the user to search for specific dog breeds by entering text into the search bar,
+  and only the breeds that match the search query are displayed in the UI.*/
   void filterBreeds() {
     setState(() {
       filteredBreeds = dogBreeds
           .where((breed) =>
               breed.toLowerCase().contains(searchQuery.toLowerCase()))
-          .toList();
+          .toList(); //convert the filtered results back into a list.
     });
   }
 
@@ -94,7 +98,7 @@ class _SearchPageState extends State<SearchPage> {
                     decoration: BoxDecoration(
                       color: Colors.white38,
                       border:
-                          Border.all(width: 1, color: Colors.deepPurpleAccent),
+                          Border.all(width: 1, color: Colors.orangeAccent),
                       borderRadius: BorderRadius.all(Radius.circular(10)),
                     ),
                     child: ListTile(
