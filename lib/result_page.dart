@@ -20,6 +20,7 @@ class _ResultPageState extends State<ResultPage> {
   void initState() {
     super.initState();
     fetchDogImage();
+
   }
 
   //This method fetches the dog image for the selected breed by calling the "fetchDogImageByBreed" method from the "ApiService".
@@ -28,6 +29,7 @@ class _ResultPageState extends State<ResultPage> {
       final image = await service2.fetchDogImageByBreed(widget.selectedBreed);
       setState(() {
         imageUrl = image;
+
       });
     } catch (e) {
       Text('Error fetching the image.');
@@ -77,17 +79,16 @@ class _ResultPageState extends State<ResultPage> {
                     topRight: Radius.circular(30),
                   ),
                 ),
-                child: Center(
-                  child: Text(
-                    '${widget.selectedBreed}',
-                    style: TextStyle(
-                      fontFamily: 'PT Serif Caption',
-                      fontSize: 40.0,
-                    ),
+                child: Text(
+                  '${widget.selectedBreed}',
+                  style: TextStyle(
+                    fontFamily: 'PT Serif Caption',
+                    fontSize: 40.0,
                   ),
                 ),
+                ),
               ),
-            ),
+
           ],
         ),
       ),
