@@ -79,11 +79,13 @@ class _ResultPageState extends State<ResultPage> {
                     topRight: Radius.circular(30),
                   ),
                 ),
-                child: Text(
-                  '${widget.selectedBreed}',
-                  style: TextStyle(
-                    fontFamily: 'PT Serif Caption',
-                    fontSize: 40.0,
+                child: Center(
+                  child: Text(
+                    '${widget.selectedBreed}',
+                    style: TextStyle(
+                      fontFamily: 'PT Serif Caption',
+                      fontSize: 40.0,
+                    ),
                   ),
                 ),
                 ),
